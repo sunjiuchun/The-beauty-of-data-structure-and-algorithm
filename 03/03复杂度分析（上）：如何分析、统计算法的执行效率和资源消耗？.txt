@@ -1,0 +1,8 @@
+O(logn)
+
+int i=1;
+while(i<=n){
+	i = i*2;
+}
+
+O(nlogn)  就是把O(logn)的代码执行n遍
