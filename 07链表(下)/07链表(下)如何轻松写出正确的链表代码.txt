@@ -47,15 +47,50 @@ int i = 0;
 while(a[i]!=key)
 	++i;
 a[n-1] = tmp;
+if(i==n-1){
+	return -1;
+}else{
+	return i;
+}
+
+
+代码2执行效率更高，因为省略了i<n，但是可读性差
+
+四、重点留意边界条件处理
+
+1、链表为空  2、链表只有一个节点  3、链表只有两个节点  4、处理头尾节点
+
+课后题：
+· 单链表反转
+· 链表中环的检测
+· 两个有序的链表合并
+· 删除链表倒数第n个节点
+· 求链表的中间节点
 
 
 
+单链表反转：(leetcode No.206)
+暴力
+class Solution{
+public:
+	ListNode *reverseList(ListNode *head){
+		ListNode *cur = NULL, *pre = head;
+		while(pre!=NULL)
+			ListNode *t = pre->next;
+			pre->next = cur;
+			cur = pre;
+			pre = t;
+	}
+	return cur;
+}
 
+链表中环的检测:(leetcode No.141)
 
+两个有序的链表合并:(leetcode No.21)
 
+删除链表倒数第n个节点:(leetcode No.19)
 
-
-
+求链表的中间节点:(leetcode No.876)
 
 
 
