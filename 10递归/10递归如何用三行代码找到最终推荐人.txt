@@ -1,0 +1,65 @@
+递归需要满足三个条件
+
+1、一个问题的解可以分解为几个子问题的解
+
+2、这个问题与分解之后的子问题，除了数据规模不同，求解思路完全一样
+
+3、存在递归终止条件
+
+走楼梯问题：
+
+int f(int n){
+	if(n==1) return 1;
+	if(n==2) return 2;
+	return f(n-1)+f(n-2);
+}
+
+写递归代码的关键就是找到如何将大问题分解为小问题的规律，
+并且基于此写出递推公式，然后再推敲终止条件，
+最后将递推公式和终止条件翻译成代码
+
+
+递归代码要警惕堆栈溢出
+
+方法1：限制递归调用的最大深度的方式来解决
+
+int depth = 0;
+
+int f(int n){
+	++depth;
+	if(depth > 1000) throw exception;
+	
+	if(n==1) return 1;
+	return f(n-1) + 1;
+}
+
+
+递归代码要警惕重复计算
+
+方法2：为了避免重复计算，可以通过一个数据结构(散列表)来保存已经求解过的f(k),
+当递归调用到f(k)时，先看下是否已经求解过了。如果是，则直接从散列表中取值返回，
+不需要重复计算。
+
+public int f(int n){
+	if(n==1) return 1;
+	if(n==2) return 2;
+	
+	//hasSolvedList可以理解成一个map,key是n,value是f(n)
+	if(hasSolveList.containsKey(n)){
+		return hasSolveList.get(n);
+	}
+	
+	int ret = f(n-1) + f(n-2);
+	hasSolveList.put(n,ret);
+	return ret;
+}
+
+
+
+
+
+
+
+
+
+
